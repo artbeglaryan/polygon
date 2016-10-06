@@ -1,0 +1,44 @@
+build:
+  description: 'Generate development build (uncompressed)'
+  tasks:
+    - 'clean:build'
+    - 'concat:src'
+    - 'copy:build'
+    - 'less:build'
+
+dist:
+  description: 'Generate production build (minified + sourcemapped)'
+  tasks:
+    - 'clean:dist'
+    - 'concat:src'
+    - 'uglify:src'
+    - 'compress'
+    - 'copy:dist'
+    - 'less:dist'
+
+lint:
+  description: 'Lint code using JSHint'
+  tasks:
+    - 'jshint'
+
+style:
+  description: 'Check JS style using JSCS'
+  tasks:
+    - 'jscs'
+
+check:
+  description: 'Run all code checks'
+  tasks:
+    - 'lint'
+    - 'style'
+
+develop:
+  - 'build'
+  - 'concurrent:dev'
+
+production:
+  - 'dist'
+  - 'concurrent:prod'
+
+default:
+  - 'develop'
