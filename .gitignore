@@ -1,0 +1,7 @@
+#JS  package managers
+node_modules/
+bower/
+build/
+dist/
+coverage/
+.idea/
